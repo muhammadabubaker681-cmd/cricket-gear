@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Metadata -->
+  <title>AERO CRICKET PRO | Premium English Willow Bats, Leather Match Balls & Cricket Gear</title>
+  <meta name="description" content="Shop elite Grade 1+ English Willow cricket bats, match balls, titanium helmets, Pittards gloves, spike shoes & team duffle bags. 3D interactive inspection & AI Cricket Advisor." />
+  <meta name="keywords" content="cricket bat, english willow grade 1+, cricket balls, cricket helmet, batting gloves, cricket pads, cricket shoes, kit bag, aero cricket" />
+  <meta property="og:title" content="AERO CRICKET PRO | Gear Up. Play Hard. Dominate." />
+  <meta property="og:description" content="Handcrafted English Willow cricket gear with 3D product view & AI Equipment Advisor." />
+  <meta property="og:type" content="website" />
+  
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Three.js CDN for 3D WebGL Product Rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "SportsStore",
+    "name": "AERO CRICKET PRO",
+    "description": "Premium Grade 1+ English Willow Cricket Equipment",
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="header-sticky">
+    <div class="container nav-bar">
+      <a href="#" class="brand-logo" data-view="home">
+        <span class="logo-icon">🏏</span> AERO<span>CRICKET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link active" data-view="home">Home</a></li>
+        <li><a href="#" class="nav-link" data-view="shop" data-category="bats">Cricket Bats</a></li>
+        <li><a href="#" class="nav-link" data-view="shop" data-category="balls">Match Balls</a></li>
+        <li><a href="#" class="nav-link" data-view="shop" data-category="gloves">Gloves & Protection</a></li>
+        <li><a href="#" class="nav-link" data-view="shop" data-category="all">All Gear</a></li>
+        <li><a href="#" class="nav-link" data-view="about">About</a></li>
+        <li><a href="#" class="nav-link" data-view="faq">FAQ</a></li>
+      </ul>
+
+      <!-- Realtime Autocomplete Search Bar -->
+      <div class="search-wrapper" id="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search bats, gloves, balls..." autocomplete="off" />
+        <div class="search-dropdown" id="search-dropdown"></div>
+      </div>
+
+      <!-- Header Quick Actions -->
+      <div class="nav-actions">
+        <button class="nav-action-btn" data-view="compare" title="Compare Matrix">
+          ⚖️ <span class="badge-count compare-count-badge">0</span>
+        </button>
+        <button class="nav-action-btn" data-view="wishlist" title="Wishlist">
+          ❤️ <span class="badge-count wishlist-count-badge">0</span>
+        </button>
+        <button class="nav-action-btn cart-toggle" title="Cart Bag">
+          🛒 <span class="badge-count cart-count-badge">0</span>
+        </button>
+        <button class="nav-action-btn" data-view="account" title="Account">
+          👤
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-nav-trigger">☰</button>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main-content">
+    
+    <!-- ==================== HOME PAGE VIEW ==================== -->
+    <div class="page-view active" id="view-home">
+      
+      <!-- HERO BANNER -->
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-text-col">
+            <span class="hero-tag">⚡ 2026 EDITION GRADE 1+ WILLOW HAS ARRIVED</span>
+            <h1 class="hero-title">Gear Up. Play Hard. <span>Dominate.</span></h1>
+            <p class="hero-subtitle">
+              Engineered with hand-selected Grade 1+ English Willow, titanium impact grilles, and Pittards high-grip leather. Trusted by over 50,000 professional players worldwide.
+            </p>
+            <div class="hero-cta-group">
+              <button class="btn btn-primary btn-lg" data-view="shop" data-category="all">🛒 Shop Now</button>
+              <button class="btn btn-accent btn-lg" onclick="appState.init3DModal('bat')">🌀 Explore 3D Equipment Hub</button>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h3>9-12</h3>
+                <p>Straight Grains</p>
+              </div>
+              <div class="stat-item">
+                <h3>4.9★</h3>
+                <p>50,000+ Reviews</p>
+              </div>
+              <div class="stat-item">
+                <h3>BS6121</h3>
+                <p>Safety Certified</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Hero Hub -->
+          <div class="hero-3d-card">
+            <div class="hero-3d-controls">
+              <span class="hero-tag">3D Interactive Viewer (Drag to rotate)</span>
+              <div>
+                <button class="btn btn-sm btn-outline" onclick="if(appState.hero3D) appState.hero3D.setMode('bat')">Bat</button>
+                <button class="btn btn-sm btn-outline" onclick="if(appState.hero3D) appState.hero3D.setMode('ball')">Ball</button>
+              </div>
+            </div>
+            <div id="hero-3d-canvas"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORY GRID SHOWCASE -->
+      <section class="container mt-4">
+        <div class="section-title">
+          <h2>Explore Professional Equipment Categories</h2>
+          <p>Precision crafted for openers, power hitters, bowlers, and wicket keepers</p>
+        </div>
+
+        <div class="category-chips-bar">
+          <button class="category-chip active" data-view="shop" data-category="all">🔥 All Equipment</button>
+          <button class="category-chip" data-view="shop" data-category="bats">🏏 Cricket Bats</button>
+          <button class="category-chip" data-view="shop" data-category="balls">🔴 Match Balls</button>
+          <button class="category-chip" data-view="shop" data-category="gloves">🧤 Batting Gloves</button>
+          <button class="category-chip" data-view="shop" data-category="helmets">🪖 Titanium Helmets</button>
+          <button class="category-chip" data-view="shop" data-category="pads">🛡️ Shin Pads</button>
+          <button class="category-chip" data-view="shop" data-category="shoes">👟 Turf Spikes</button>
+          <button class="category-chip" data-view="shop" data-category="bags">🎒 Duffle Kit Bags</button>
+          <button class="category-chip" data-view="shop" data-category="accessories">🔧 Bat Accessories</button>
+        </div>
+      </section>
+
+      <!-- FEATURED PRODUCTS -->
+      <section class="container mt-4">
+        <div class="section-title">
+          <h2>Featured Grade 1+ Equipment</h2>
+          <p>Top rated gear designed for maximum stroke performance</p>
+        </div>
+        <div class="products-grid" id="home-featured-products"></div>
+      </section>
+
+      <!-- BEST SELLERS -->
+      <section class="container mt-4">
+        <div class="section-title">
+          <h2>Bestsellers & Player Favorites</h2>
+          <p>Chosen by match-winning players across T20 & Test formats</p>
+        </div>
+        <div class="products-grid" id="home-bestsellers-products"></div>
+      </section>
+
+    </div>
+
+
+    <!-- ==================== SHOP & CATALOG VIEW ==================== -->
+    <div class="page-view" id="view-shop">
+      <div class="container">
+        <div class="shop-layout">
+          
+          <!-- Filter Sidebar -->
+          <aside class="filter-sidebar">
+            <h3>Filter Products</h3>
+            <hr class="mt-2 mb-3" />
+
+            <div class="filter-group">
+              <h4>Max Price: <span id="price-value-display">$600</span></h4>
+              <input type="range" id="filter-price-slider" min="20" max="600" step="10" value="600" class="filter-slider" />
+            </div>
+
+            <div class="filter-group">
+              <h4>Willow Grade</h4>
+              <select id="filter-willow-select" class="filter-select">
+                <option value="all">All Willow Types</option>
+                <option value="grade 1+">Grade 1+ English Willow</option>
+                <option value="grade 1">Grade 1 English Willow</option>
+                <option value="kashmir">Kashmir Willow</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <h4>Brand Filter</h4>
+              <select id="filter-brand-select" class="filter-select">
+                <option value="all">All Brands</option>
+                <option value="aero pro">AERO Pro</option>
+                <option value="vanguard">Vanguard</option>
+                <option value="striker">Striker</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <h4>Sort By</h4>
+              <select id="filter-sort-select" class="filter-select">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+              </select>
+            </div>
+
+            <button class="btn btn-outline btn-sm width-100" onclick="appState.resetFilters()">Reset All Filters</button>
+          </aside>
+
+          <!-- Catalog Main Area -->
+          <main class="shop-main-content">
+            <div class="products-grid" id="shop-products-grid"></div>
+          </main>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== PRODUCT DETAIL VIEW ==================== -->
+    <div class="page-view" id="view-product-detail">
+      <div class="container">
+        <div class="product-detail-grid" id="product-detail-content"></div>
+      </div>
+    </div>
+
+
+    <!-- ==================== WISHLIST VIEW ==================== -->
+    <div class="page-view" id="view-wishlist">
+      <div class="container mt-4">
+        <div class="section-title">
+          <h2>❤️ Your Saved Wishlist</h2>
+          <p>Keep track of your favorite English Willow bats and gear</p>
+        </div>
+        <div class="products-grid" id="wishlist-products-grid"></div>
+      </div>
+    </div>
+
+
+    <!-- ==================== COMPARISON MATRIX VIEW ==================== -->
+    <div class="page-view" id="view-compare">
+      <div class="container mt-4">
+        <div class="section-title">
+          <h2>⚖️ Equipment Comparison Matrix</h2>
+          <p>Compare willow grades, weights, profiles, and prices side-by-side</p>
+        </div>
+        <div id="compare-matrix-container"></div>
+      </div>
+    </div>
+
+
+    <!-- ==================== USER ACCOUNT DASHBOARD ==================== -->
+    <div class="page-view" id="view-account">
+      <div class="container mt-4">
+        <div class="section-title">
+          <h2>👤 Player Account & Orders</h2>
+        </div>
+        <div class="shop-layout">
+          <div class="filter-sidebar">
+            <h4>Account Menu</h4>
+            <ul class="footer-links mt-3">
+              <li><a href="#">📦 Order History (#AERO-8942)</a></li>
+              <li><a href="#">🏆 Loyalty Score (1,450 pts)</a></li>
+              <li><a href="#">📍 Saved Addresses</a></li>
+              <li><a href="#">⚙️ Equipment Preferences</a></li>
+            </ul>
+          </div>
+          <div class="shop-main-content">
+            <div class="detail-specs-card">
+              <h3>Recent Order Tracker: #AERO-8942</h3>
+              <p>Status: <strong style="color: var(--primary);">Out for Express Delivery</strong></p>
+              <hr class="mt-2 mb-3" />
+              <p>Item: AERO Matrix Pro Grade 1+ English Willow Bat (Short Handle)</p>
+              <p>Estimated Arrival: <strong>Tomorrow by 2:00 PM</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== ABOUT US VIEW ==================== -->
+    <div class="page-view" id="view-about">
+      <div class="container mt-4">
+        <div class="section-title">
+          <h2>Handcrafted English Willow Heritage</h2>
+          <p>The story of AERO CRICKET craftsmanship and precision shaping</p>
+        </div>
+        <div class="product-detail-grid">
+          <div>
+            <h3>Sourced from England's finest willow tree plantations</h3>
+            <p class="mt-3">
+              Every AERO bat begins in England where hand-selected Salix Alba Caerulea trees are clefted and naturally air-dried for 12 months. Our master bowyers press each cleft individually to optimize handle flex, grain alignment, and maximum ping.
+            </p>
+          </div>
+          <div class="main-image-wrap">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80" alt="Willow Craftsmanship" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ==================== FAQ VIEW ==================== -->
+    <div class="page-view" id="view-faq">
+      <div class="container mt-4">
+        <div class="section-title">
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything you need to know about bat knocking-in, care, and warranties</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="detail-specs-card mb-3">
+            <h4>❓ Do AERO bats require knocking-in before match play?</h4>
+            <p class="mt-2">Yes! Although all our bats come factory pre-knocked, we recommend 10,000 gentle taps with a hardwood mallet on the edges and toe before facing new leather match balls.</p>
+          </div>
+          <div class="detail-specs-card mb-3">
+            <h4>❓ What is the difference between Grade 1+ and Grade 1 Willow?</h4>
+            <p class="mt-2">Grade 1+ represents the top 1% of unblemished English Willow clefts with 9-12 clean straight grains. Grade 1 features 6-8 straight grains with equal power transmission.</p>
+          </div>
+          <div class="detail-specs-card mb-3">
+            <h4>❓ What is your return & warranty policy?</h4>
+            <p class="mt-2">We offer a 30-day no-hassle return window and a full 1-Year Manufacturer Willow Warranty on handle and blade structural integrity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- ==================== CART DRAWER ==================== -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h4>🛒 Your Gear Bag</h4>
+      <button class="modal-close" id="cart-drawer-close">✕</button>
+    </div>
+    <div class="cart-drawer-items" id="cart-drawer-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="flex-between mb-3" style="display:flex; justify-content:space-between;">
+        <span>Subtotal:</span>
+        <strong id="cart-drawer-subtotal" style="font-size: 1.3rem; color: var(--primary);">$0.00</strong>
+      </div>
+      <div style="display:flex; gap:0.5rem; margin-bottom: 1rem;">
+        <input type="text" id="promo-input" placeholder="Promo code (e.g. IPL2026)" style="flex:1; padding:0.5rem; border-radius:4px; background:rgba(255,255,255,0.05); border:1px solid var(--border-light); color:#fff;" />
+        <button class="btn btn-sm btn-outline" onclick="appState.applyPromoCode(document.getElementById('promo-input').value)">Apply</button>
+      </div>
+      <button class="btn btn-primary btn-lg width-100" style="width:100%;" onclick="alert('🎉 Order Placed! Tracking ID #AERO-' + Math.floor(Math.random()*89999 + 10000) + ' sent to your email.'); appState.cart = []; appState.saveStorage(); appState.renderCartDrawer(); appState.toggleCartDrawer(false);">
+        🔒 Proceed to Secure Checkout
+      </button>
+    </div>
+  </aside>
+
+
+  <!-- ==================== AI CRICKET CHATBOT WIDGET ==================== -->
+  <button class="ai-chat-btn" id="ai-chat-btn" title="Ask CricAssist AI">🏏</button>
+  <div class="ai-chat-window" id="ai-chat-window">
+    <div class="chat-header">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.4rem;">🏏</span>
+        <div>
+          <h5 style="margin:0;">CricAssist AI</h5>
+          <span style="font-size:0.75rem; color:var(--primary);">● Online Equipment Advisor</span>
+        </div>
+      </div>
+      <button class="modal-close" id="ai-chat-close" style="position:static;">✕</button>
+    </div>
+
+    <div class="chat-messages" id="ai-chat-messages"></div>
+    <div class="chat-chips" id="ai-chat-chips"></div>
+
+    <div class="chat-input-area">
+      <input type="text" id="ai-chat-input" placeholder="Ask about bats, sizes, or gear..." />
+      <button class="btn btn-primary btn-sm" id="ai-chat-send">Send</button>
+    </div>
+  </div>
+
+
+  <!-- ==================== 3D INTERACTIVE MODAL ==================== -->
+  <div class="modal" id="model3d-modal">
+    <div class="modal-content">
+      <button class="modal-close">✕</button>
+      <h3 style="margin-bottom: 1rem;">🌀 3D Interactive WebGL Product Inspector</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Click & drag mouse/finger to rotate 360°. Toggle views below:</p>
+      <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+        <button class="btn btn-sm btn-outline" onclick="if(appState.threeViewer) appState.threeViewer.setMode('bat')">Bat View</button>
+        <button class="btn btn-sm btn-outline" onclick="if(appState.threeViewer) appState.threeViewer.setMode('ball')">Match Ball View</button>
+        <button class="btn btn-sm btn-outline" onclick="if(appState.threeViewer) appState.threeViewer.toggleSweetSpot(!appState.threeViewer.showSweetSpot)">Toggle Sweet Spot Heatmap</button>
+      </div>
+      <div id="modal-3d-canvas-container"></div>
+    </div>
+  </div>
+
+
+  <!-- ==================== QUICK VIEW MODAL ==================== -->
+  <div class="modal" id="quickview-modal">
+    <div class="modal-content">
+      <button class="modal-close">✕</button>
+      <div id="quickview-modal-body"></div>
+    </div>
+  </div>
+
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <a href="#" class="brand-logo mb-3">🏏 AERO<span>CRICKET</span></a>
+        <p style="color:var(--text-muted); font-size:0.9rem;">
+          Official supplier of Grade 1+ English Willow cricket bats, titanium helmets, Pittards gloves & match equipment.
+        </p>
+      </div>
+      <div>
+        <h4>Equipment</h4>
+        <ul class="footer-links">
+          <li><a href="#" data-view="shop" data-category="bats">Cricket Bats</a></li>
+          <li><a href="#" data-view="shop" data-category="balls">Match Balls</a></li>
+          <li><a href="#" data-view="shop" data-category="gloves">Gloves & Pads</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="#" data-view="faq">Bat Care Guide</a></li>
+          <li><a href="#" data-view="faq">Size Calculator</a></li>
+          <li><a href="#" data-view="faq">Returns & Warranty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Subscribe for 10% off your first Grade 1+ bat order:</p>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="email" placeholder="Your email address" style="padding:0.5rem; border-radius:4px; background:rgba(255,255,255,0.05); border:1px solid var(--border-light); color:#fff; flex:1;" />
+          <button class="btn btn-primary btn-sm" onclick="alert('🎉 Subscribed! Your 10% promo code is AERO10');">Join</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/three-viewer.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Initialize hero 3D viewer on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (typeof Cricket3DViewer !== 'undefined') {
+          appState.hero3D = new Cricket3DViewer('hero-3d-canvas', { mode: 'bat' });
+        }
+      }, 200);
+    });
+  </script>
+</body>
+</html>
